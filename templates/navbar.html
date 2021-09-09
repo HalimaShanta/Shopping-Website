@@ -1,0 +1,83 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link href="{% static 'css/home.css' %}" rel="stylesheet">
+  
+  </head> 
+  
+<header>
+    <a href="#" class="logo"><span>Be</span>Queen</a>
+<nav class="navbar">
+    <a href="{% url 'home' %}">home</a>
+    <div style="display: contents;" class="menu">
+    <a href="" class="cat">Category</a>
+    <div class="dropdown">
+        <a class="" href="/fashion">Fashion</a>
+        <hr>
+      <a class="" href="/beauty">Beauty</a>
+        <hr>
+      <a class="" href="/accesories">Accesories</a>
+    </div>
+</div>
+    <a href="#clothing" id="cloth">Trending</a>
+    <a href="#follow" id="fol">Follow us</a>
+</nav>
+<div class="icons">
+    <i class="fa fa-search" id="search-btn"></i>
+    <div style="display: contents;" class="user">
+    <i class="fa fa-user cat" ></i>
+    <div class="dropdown">
+    <a id="login-btn">Sign In</a>
+      <hr>
+    <a id="register-btn">Sign Up</a>
+    </div>
+    </div>
+    <a href="{% url 'cart' %}">
+    <i id="cart-icon" class="fa fa-shopping-cart" ></i>
+    </a>
+    <p id="cart-total">{{cartItems}}</p>
+</div>
+  
+<form action="" class="search-bar-container">
+    <input type="search" id="search-bar">
+    <label for="search-bar" class="fa fa-search"></label>
+</form>
+</header>
+<div class="login-form-container">
+  <i class="fa fa-times" id="form-close"></i>
+  <form action="">
+    <h3>LogIn</h3>
+    <input type="email" class="box" placeholder="enter your email">
+    <input type="password" class="box" placeholder="enter your password">
+    <span><input type="submit" class="button" value="login now"></span>
+    <input type="checkbox" id="remember">
+    <label for="remember">Remember me</label>
+    <p>forgot password?<a href="#">Click Here</p>
+      <p>Don't have an account?<a href="#">Sign Up</p>
+
+  </form>
+</div>
+<div class="register-form-container">
+  <i class="fa fa-times" id="regform-close"></i>
+  <form action="">
+    <h3>Sign Up</h3>
+    <input type="text" class="box" placeholder="enter your Name">
+    <input type="email" class="box" placeholder="enter your Email">
+    <input type="password" class="box" placeholder="enter password">
+    <input type="password" class="box" placeholder="Confirm Password">
+    <span></span><input type="submit" class="button" value="Register now">
+    <input type="checkbox" id="remember">
+    <label for="remember">Remember me</label>
+    <p>Already have an account?<a href="#">Sign In</p>
+
+  </form>
+</div>
+
+
+<script src="{% static 'js/script.js' %}"></script>
+
+    </html>

@@ -1,0 +1,120 @@
+{% include 'index.html' %}
+{% include 'navbar.html' %}
+{% load static %}
+{% block content %}
+<html>
+<head>
+    <link href="{% static 'css/cart.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<style>
+    .wrap .checked{
+        color:orange;
+    }
+    
+</style>
+<body>
+<div class="full_cont">
+    <section>
+    <div class="col-lg-6 small-container">
+        <div class="row-div">
+            {% for prod in product %}
+                <div class="col-2" style="height: 100%;">
+                    <img src="{{prod.image.url}}" width="100%">
+                </div>
+                <div class="col-2 det">
+                    <input type="hidden" name="prod_id" id="prod_id" value="{{prod.id}}">
+                    <a class="hm" href="/home">Home</a>
+                    <div class="wrap">
+                        
+                    <i class="fa fa-star {% if review_avg.avg_rate > 1 %}--o checked {% endif %}"></i>
+                    <i class="fa fa-star {% if review_avg.avg_rate > 2 %}--o checked {% endif %}"></i>
+                    <i class="fa fa-star {% if review_avg.avg_rate > 3 %}--o checked {% endif %}"></i>
+                    <i class="fa fa-star {% if review_avg.avg_rate > 4 %}--o checked {% endif %}"></i>
+                    <i class="fa fa-star {% if review_avg.avg_rate > 5 %}--o checked {% endif %}"></i>
+                
+                </div>
+                    <h1>{{prod.title}}</h1>
+                    <h2>Rating: {{review_avg.avg_rate|floatformat:2}} from {{review_count}} People</h2>
+                    
+                    <hr>
+                    <h3>{{prod.price}}</h3>
+                    <hr>
+                    <h4>{{prod.sub_title}}</h4>
+                    <hr>
+                    <div class="buttons" style="display: block ruby;">
+                        <button data-home="{{prod.id}}" data-action="add" class="cart_btn update-cart" >Add to Cart</button>
+                        <!-- <button class="chk_btn" >CheckOut&#x2192;</button> -->
+                        <a  class="chk_btn" href="/cart">go to cart&#x2192;</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+<section>
+    <div class="col-lg-6 bx">
+        <form class="review_form" method="GET" action="/review">
+            {% for prod in product %}
+            <input type="hidden" name="prod_id" id="prod_id" value="{{prod.id}}">
+            {% endfor %}
+            <div class="form-group">
+                <label>Write a review and help us get better..</label>
+                <textarea class="comment" class="input" type="text" name="comment" placeholder="your review"></textarea>
+            </div>
+            <div class="form-group">
+                <div class="input-rating">
+                    <p style="font-size: x-large;">Your Rating:</p>
+                    <div class="rating-wrapper">
+                        <input type="radio" id="five" name="rate" value="5" ><label  for="five" class="fa fa-star"></label>
+                        <input type="radio" id="four" name="rate" value="4">
+                        <label for="four" class="fa fa-star"></label>
+                        <input type="radio" id="three" name="rate" value="3">
+                        <label for="three" class="fa fa-star"></label>
+                        <input type="radio" id="two" name="rate" value="2">
+                        <label for="two" class="fa fa-star"></label>
+                        <input type="radio" id="one" name="rate" value="1">
+                        <label for="one" class="fa fa-star"></label>
+                    </div>
+                </div>
+            </div>
+            {% if request.user.is_authenticated %}
+                <button class="submit" type="submit" name="submit" value="submit">Submit</button>
+            {% else %}
+                <a class="log" id="login-btn">You Have to Log in to give a review...Log In</a>
+            {% endif %}
+            <div class="review">
+                {% for review in review %}
+                        <a class="fa fa-user-o">{{review.user.name}}</a>
+                        <a class="fa fa-clock-o" style="padding: 10px;">{{review.created_at}}</a>
+                        <i class="fa fa-star {% if review.rate > 4 %} checked {% endif %}"></i>
+                        <i class="fa fa-star {% if review.rate > 3 %} checked {% endif %}"></i>
+                        <i class="fa fa-star {% if review.rate > 2 %} checked {% endif %}"></i>
+                        <i class="fa fa-star {% if review.rate > 1 %} checked {% endif %}"></i>
+                        <i class="fa fa-star {% if review.rate > 0 %} checked {% endif %}"></i>
+                        <div class="review-body">
+                            <p>{{review.comment}}</p>
+                            {% empty %}
+                            <p>No Reviews Yet</p>
+                        </div>
+                {% endfor %}
+            </div>
+        </form>
+    </div>
+</section>
+</div>
+
+
+{% include 'footer.html' %}
+<script src="{% static 'js/cart.js' %}"></script>
+<script>
+    document.getElementById("cloth").remove();
+    document.getElementById("beaut").remove();
+    document.getElementById("bg").remove();
+    document.getElementById("acs").remove();
+    // document.getElementById("fol").remove();
+</script>
+
+</body>
+</html>
+{% endblock %}

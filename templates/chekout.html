@@ -1,0 +1,239 @@
+{% include 'navbar.html' %}
+{% include 'index.html' %}
+{% load static %}
+{% block content %}
+
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="{% static 'css/cart.css' %}" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<style>
+    .box-element{
+    box-shadow: hsl(0, 0%, 80%) 0 0 16px;
+border-radius: 4px;
+overflow: hidden;
+width: 200%;
+}
+.box{
+    box-shadow: hsl(0, 0%, 80%) 0 0 16px;
+border-radius: 4px;
+overflow: hidden;
+width: 200%
+
+}
+.row-new{
+margin-top: 100px;
+display: flex;
+overflow: hidden;
+justify-content: space-evenly;
+}
+#user-info{
+    display: block ruby;
+    padding: 10px;
+    font-family: initial;
+}
+.form-field{
+    border: 1px solid #bfb3b3;
+width: 50%;
+padding: 7px;
+}
+hr{
+    color: #e6dada;
+border: 1px solid;
+}
+.ship{
+    font-size: 2.5rem;
+font-weight: inherit;
+font-family: initial;
+padding: 10px;
+}
+#shipping-info .form-field{
+    margin: 10px;
+}
+.btn1{
+    background-color: forestgreen;
+width: 100%;
+padding: 7px;
+cursor: pointer;
+font-family: initial;
+border-radius: 6px;
+font-size: initial;
+color: #fff;
+}
+.btn1:hover{
+    color: #fff;
+}
+.but{
+    padding: 10px;
+font-size: initial;
+width: -moz-fit-content;;
+display: block;
+border: 1px solid black;
+color: #000;
+font-family: initial;
+border-radius: 6px;
+background: transparent;
+cursor: pointer;
+margin-bottom: 5px;
+}
+.but:hover{
+    background: black;
+    color: #fff;
+}
+h3,h5{
+    padding: 10px;
+font-family: initial;
+font-size: 2rem;
+}
+</style>
+
+<div class="row-new">
+    <div class="col-lg-6">
+        <div class="box-element" id="form-wrapper">
+            <form id="form">
+                <div id="user-info">
+                    <div class="form-field">
+                        <input required class="form-control" type="text" name="name" placeholder="Name..">
+                    </div>
+                    <div class="form-field">
+                        <input required class="form-control" type="email" name="email" placeholder="Email..">
+                    </div>
+                </div>
+
+                <div id="shipping-info">
+                    <hr>
+                    <p class="ship">Shipping Information:</p>
+                    <hr>
+                    <div class="form-field">
+                        <input required class="form-control" type="text" name="address" placeholder="Address..">
+                    </div>
+                    <div class="form-field">
+                        <input required class="form-control" type="text" name="city" placeholder="City..">
+                    </div>
+                    <div class="form-field">
+                        <input required class="form-control" type="text" name="state" placeholder="State..">
+                    </div>
+                    <div class="form-field">
+                        <input required class="form-control" type="text" name="zipcode" placeholder="Zipcode..">
+                    </div>
+                </div>
+                <hr>
+                <input id="form-button" class="btn1 btn-block" type="submit" value="Continue">
+            </form>
+        </div>
+        <br>
+        <div class="box-element hidden" id="payment-info">
+            <small style="font-size: small;
+            font-family: initial;">Paypal Options</small>
+            <button id="make-payment" style="background: darkgray;
+            font-family: initial;
+            padding: 5px;">Make Payment</button>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="box-elemet box" id="form-wrapper">
+            <a class="but" href="{% url 'cart' %}">&#x2190; Back to Cart</a>
+            <hr>
+            <h3>Order Summery</h3>
+            <hr>
+            {% for item in items %}
+            <div class="cart-row">
+                <div style="flex: 2;"><img class="row-image" src="{{item.product.image.url}}"></div>
+                <div style="flex: 2;"><p>{{item.product.title}}</p></div>
+                <div style="flex: 1;"><p>{{item.product.price}}</p></div>
+                <div><p>x{{item.quantity}}</p></div>
+            </div>
+            {% endfor %}
+            <h5>Item: {{order.get_cart_items}}</h5>
+            <h5>Total: ${{order.get_cart_total|floatformat:2}}</h5>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    var shipping = '{{order.shipping}}'
+    var total = '{{order.get_cart_total|floatformat:2}}'
+
+    if(shipping == 'False'){
+        document.getElementById('shipping-info').innerHTML = ''
+    }
+    if(user != 'AnonymousUser'){
+        document.getElementById('user-info').innerHTML = ''
+    }
+    if(shipping == 'False' && user != 'AnonymousUser'){
+        document.getElementById('form-wrapper').classList.add('hidden');
+
+        document.getElementById('payment-info').classList.remove('hidden');
+    }
+    var form = document.getElementById('form')
+
+    form.addEventListener('submit', function(e){
+        e.preventDefault()
+        console.log('Form is submitted..')
+        document.getElementById('form-button').classList.add('hidden')
+        document.getElementById('payment-info').classList.remove('hidden')
+    })
+    document.getElementById('make-payment').addEventListener('click', function(e){
+        submitFormData()
+    })
+    function submitFormData(){
+        console.log('Payment Button Clicked')
+
+        var userFormData = {
+            'name': null,
+            'email': null,
+            'total': total,
+        }
+        var shippingInfo = {
+            'address': null,
+            'city': null,
+            'state': null,
+            'zipcode': null,
+        }
+
+        if(shipping != 'False'){
+            shippingInfo.address = form.address.value
+            shippingInfo.city = form.city.value
+            shippingInfo.state = form.state.value
+            shippingInfo.zipcode = form.zipcode.value
+        }
+        if(user == 'AnonymousUser'){
+            userFormData.name = form.name.value
+            userFormData.email = form.email.value
+        }
+
+        var url = '/process_order/'
+        fetch(url,{
+            method: 'POST',
+            headers: {
+                'Content-Type':'application/json',
+                'X-CSRFToken':csrftoken,
+            },
+            body:JSON.stringify({'form':userFormData, 'shipping':shippingInfo})
+        })
+        .then((response) => response.json())
+        .then((data) => {
+            console.log('Success', data);
+            alert('Transaction completed');
+
+             cart = {}
+            document.cookie = 'cart=' + JSON.stringify(cart) + ";domain=;path=/"
+
+            window.location.href = "{% url 'home' %}"
+        })
+    }
+    document.getElementById("cloth").remove();
+    document.getElementById("beaut").remove();
+    document.getElementById("bg").remove();
+    document.getElementById("acs").remove();
+    document.getElementById("fol").remove();
+    // document.getElementById("bg").remove();
+</script>
+</html>
+{% endblock %}

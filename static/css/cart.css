@@ -1,0 +1,350 @@
+.row{
+    margin-top: 100px;
+}
+.conbtn{
+    width: 300px;
+    padding: 10px 30px;
+    text-align: center;
+    font-weight: bold;
+    font-size: large;
+    background: transparent;
+    border: 2px solid #009698;
+    border-radius: 25px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    top: 10px;
+    color: #009698;
+}
+
+.conbtn span{
+    width: 0;
+    height: 100%;
+    z-index: -1;
+    position: absolute;
+    background: #009698;
+    border-radius: 25px;
+    left: 0;
+    bottom: 0;
+    transition: 0.5s;
+}
+.conbtn:hover span{
+    width: 100%;
+}
+.conbtn:hover{
+    border: none;
+    color: #fff;
+}
+.table{
+    width: 100%;
+    margin-top: 30px;
+    border-top: 1px solid #ececec;
+    border-bottom: 1px solid #ececec;
+
+}
+
+.cart-row{
+    display: flex;
+    align-items: flex-stretch;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #ececec;
+    font-size: large;
+}
+.row-image{
+    width: 100px;
+}
+.cart_total{
+    display: inline-block;
+	text-align: center;
+	color:#fff;
+	background-color: red;
+	width: 20px;
+	height: 25px;
+	border-radius: 50%;
+	font-size: 14px;
+    position: relative;
+    right: 25px;
+}
+.quantity{
+    display: inline-block;
+	font-weight: 700;
+	padding-right:10px;
+}
+.chg-quantity{
+	width: 12px;
+	cursor: pointer;
+	display: block;
+	margin-top: 5px;
+	transition:.1s;
+}
+
+.chg-quantity:hover{
+	opacity: .6;
+}
+.hidden{
+	display: none!important;
+}
+.chkbtn{
+    width: 100px;
+    padding: 10px 5px;
+    text-align: center;
+    font-weight: bold;
+    font-size: large;
+    background: transparent;
+    border: 2px solid #06940d;
+    border-radius: 25px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+.chkbtn span{
+    width: 0;
+    height: 100%;
+    z-index: -1;
+    position: absolute;
+    background: #06940d;
+    border-radius: 25px;
+    left: 0;
+    bottom: 0;
+    transition: 0.5s;
+}
+.chkbtn:hover span{
+    width: 100%;
+}
+.chkbtn:hover{
+    border: none;
+    color: #fff;
+}
+
+.button .chg-quantity{
+    background-color: red;
+    color: #fff;
+}
+.small-container{
+    width: 30%;
+margin: 90px;
+}
+.row-div{
+    display: flex;
+width: 150%;
+box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.15);
+height: 60rem;
+}
+.row-div img{
+    max-width: 100%;
+height: 100%;
+}
+
+.det{
+    width: 600rem;
+
+padding: 5px;
+}
+.det .hm{
+    /* margin-bottom: 50px; */
+margin-left: 111px;
+color: #000;
+font-size: 2rem;
+font-weight: bold;
+}
+.det .wrap{
+    margin-left: 25%;
+font-size: x-large;
+margin-bottom: 50px;
+-webkit-text-fill-color: transparent;
+-webkit-text-stroke-width: 2px;
+-webkit-text-stroke-color: #000;
+margin-top: 20px;
+}
+.det .wrap .checked{
+    color: orangered;
+    -webkit-text-fill-color:orangered;
+-webkit-text-stroke-width: 2px;
+-webkit-text-stroke-color: orangered;
+}
+.det h1{
+    color: #000;
+font-family: initial;
+margin-bottom: 20px;
+}
+.det h2{
+    font-size: large;
+color: crimson;
+font-family: initial;
+font-weight: bold;
+}
+.det h3{
+    color: #000;
+font-family: initial;
+margin: 3px;
+font-size: large;
+margin-top: 10px;
+margin-bottom: 10px;
+}
+.det h4{
+    color: #535050;
+font-family: initial;
+font-size: medium;
+}
+.det hr{
+    color: #e6dada;
+border: 1px solid;
+}
+
+.cart_btn{
+    padding: 10px;
+font-size: initial;
+width: -moz-fit-content;;
+display: block;
+border: 1px solid black;
+color: #000;
+font-family: initial;
+border-radius: 6px;
+background: transparent;
+cursor: pointer;
+margin-top: 25px;
+}
+.cart_btn:hover{
+    background: black;
+    color: #fff;
+}
+.chk_btn{
+    padding: 10px;
+font-size: initial;
+width: -moz-fit-content;;
+display: block;
+border: 1px solid black;
+color: #000;
+font-family: initial;
+border-radius: 6px;
+background: transparent;
+cursor: pointer;
+margin-top: 25px;
+float: right;
+}
+.chk_btn:hover{
+    background: rgb(8, 143, 19);
+    color: #fff;
+    border: none;
+}
+.bx{
+    /* position: relative;
+    margin-left: 55%;
+    bottom: 70rem;
+    overflow: hidden;
+    box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.15);
+    width: 40%; */
+}
+.review_form{
+    position: relative;
+    box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.15);
+bottom: 80rem;
+margin-left: 55%;
+width: 40%;
+padding: 20px;
+}
+.form-group label{
+    font-family: initial;
+font-size: medium;
+font-weight: bold;
+}
+.comment{
+    border: 2px solid;
+margin: 10px;
+width: 80%;
+padding: 30px;
+cursor: pointer;
+border-radius: 6px;
+background: transparent;
+}
+.input-rating{
+    font-size: 2rem;
+color: #000;
+font-weight: bolder;
+margin-top: 1%;
+}
+.rating-wrapper{
+    position: relative;
+    transform: translate(-50%, -50%);
+    display: flex;
+    left: 80%;
+    font-size: x-large;
+    margin-top: -2.5%;
+    overflow: hidden;
+}
+.rating-wrapper input{
+    display: none;
+}
+.rating-wrapper label{
+    display: block;
+    cursor: pointer;
+    width: 30px;
+}
+.rating-wrapper label:before{
+    content: '\f005';
+    font-family: fontAwesome;
+    position: relative;
+    display: block;
+    /* font-size: 30px; */
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: #000;
+}
+.rating-wrapper label:after{
+    content: '\f005';
+    font-family: fontAwesome;
+    position: absolute;
+    display: block;
+    /* font-size: 30px; */
+    color: orange;
+    top: 0;
+    opacity: 0;
+    transition: .5s;
+    text-shadow: 0 2x 5px rgba(0, 0, 0, 0.5);
+}
+.rating-wrapper label:hover:after,
+.rating-wrapper input:checked ~ label:after{
+    opacity: 1;
+}
+.submit{
+    background: transparent;
+padding: 10px;
+font-family: initial;
+font-size: x-large;
+border: 1px solid;
+border-radius: 10px;
+margin-left: 37%;
+font-weight: bold;
+cursor: pointer;
+color: orangered;
+margin-top: 2%;
+}
+.submit:hover{
+    background: orangered;
+    border: none;
+    color: #fff;
+}
+.review{
+    font-size: 2rem;
+font-family: initial;
+margin-top: 30px;
+}
+.review i{
+    float: right;
+}
+hr{
+    border: 1px solid;
+}
+.review-body p{
+    padding: 20px;
+}
+.checked{
+    color: orange;
+}
+.log{
+    font-family: initial;
+font-size: medium;
+color: crimson;
+font-weight: bold;
+}

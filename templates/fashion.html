@@ -1,0 +1,55 @@
+{% include 'navbar.html' %}
+{% include 'index.html' %}
+{% load static %}
+{% block content %}
+
+
+<section style="padding: 12rem 0 2.5rem;">
+<div class="cloth_container container grid">
+    {% for object in product %}
+    <div class="cloth_card">
+        <div class="cloth_header">
+            <img src="{{object.image.url}}" alt="" class="cloth_img">
+            <div class="cloth_content">
+                <ul class="icons">
+                    <span class="cloth_cart">
+                    <button data-home="{{object.id}}" data-action="add" class="add-btn update-cart" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Add to Cart">
+                        <i class="fa fa-cart-plus cloth_cart-icon"></i></button></span>
+                    </span>
+                    <span class="cloth_cart">
+                        <button data-home="{{object.id}}" data-action="add" class="fav-btn update-cart" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Add to Cart">
+                        <i class="fa fa-heart cloth_fav-icon"></i></button></span>
+                    </span>
+                </ul>
+            </div>
+            <div class="cloth_data">
+                <h3 class="cloth_title">{{object.title}}</h3><br>
+                <span class="cloth_subtitle">{{object.sub_title}}</span><br>
+                <span class="cloth_price">{{object.price|floatformat:2}}tk</span><br>
+                <div class="wrap">
+                    
+                    <i class="fa fa-star {% if review_avg.avg  > 1 %}--o checked {% endif %}"></i>
+                    <i class="fa fa-star {% if review_avg.avg  > 2 %}--o checked {% endif %}"></i>
+                    <i class="fa fa-star {% if review_avg.avg  > 3 %}--o checked {% endif %}"></i>
+                    <i class="fa fa-star {% if review_avg.avg  > 4 %}--o checked {% endif %}"></i>
+                    <i class="fa fa-star {% if review_avg.avg  > 5 %}--o checked {% endif %}"></i>
+                    <span class="cloth_rating-number">Rating:{{review_avg}} from {{review_count}} People</span>
+            
+                </div>
+            </div>
+        </div>
+        <a class="button button--flex cloth_button" href="{% url 'store' object.id %}">
+            <i class="fa fa-arrow-right"></i>
+        </a>
+        
+    </div>
+    {% endfor %}
+</div>
+</section>
+{% include 'footer.html' %}
+<script src="{% static 'js/cart.js' %}"></script>
+<script>
+    document.getElementById("cloth").remove();
+
+    </script>
+{% endblock %}
